@@ -1,29 +1,33 @@
 import React from "react"
 import Greeting from './Greeting';
+import { useDispatch, useSelector, Provider } from 'react-redux';
+import store from '../redux/configStore';
+
 import {
 	BrowserRouter as Router,
 	Routes,
 	Route,
 	Link
 } from 'react-router-dom';
-class App extends React.Component {
-  render () {
-    return (
-      <React.Fragment>
+const App = () => {
+  return (
+    <React.Fragment>
+      <Provider store={store}>
         <Router>
           <div className="App">
             <header>
-                <span>Clicl the link to see a random </span>
+                <span>Click the link to see a random </span>
                 <Link to="/greeting">greeting</Link>
             </header>
             <Routes>
-              <Route exact path='/greeting' element={< Greeting />}></Route>
+              <Route path='/greeting' element={< Greeting />}></Route>
             </Routes>
           </div>
         </Router>
-      </React.Fragment>
-    );
-  }
+      </Provider>
+    </React.Fragment>
+  );
+  
 }
 
 export default App
